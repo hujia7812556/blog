@@ -8,7 +8,7 @@
 		"barryvdh/laravel-ide-helper": "1.11.*"
 	},
 	"require-dev": {
-	"way/generators": "~2.0"
+		"way/generators": "~2.0"
 	},
 	"autoload": {
 		"classmap": [
