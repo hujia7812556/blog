@@ -21,4 +21,6 @@
 
 1 打开bootstrap/start.php
 
-2 找到`'local' => array('homestead')`,将homestead改为本地主机名
+2 打开`'local' => array('homestead')`，将homestead改为本地主机名
+
+3 打开app/config/local/database.php，设置mysql环境
