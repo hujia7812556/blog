@@ -14,20 +14,21 @@
                     <p>{{ $errors->first() }}</p>
                 </div>
             @endif
-            {{ Form::open(array('url' => 'login', 'class' => 'am-form')) }}
+            {{ Form::open(array('url' => 'register', 'class' => 'am-form')) }}
             {{ Form::label('email', 'E-mail:') }}
             {{ Form::email('email', Input::old('email')) }}
+            <br/>
+            {{ Form::label('nickname', 'NickName:') }}
+            {{ Form::text('nickname', Input::old('nickname')) }}
             <br/>
             {{ Form::label('password', 'Password:') }}
             {{ Form::password('password') }}
             <br/>
-            <label for="remember_me">
-                <input id="remember_me" name="remember_me" type="checkbox" value="1">
-                Remember Me
-            </label>
+            {{ Form::label('password_confirmation', 'ConfirmPassword:') }}
+            {{ Form::password('password_confirmation') }}
             <br/>
             <div class="am-cf">
-                {{ Form::submit('Login', array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
+                {{ Form::submit('Register', array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
             </div>
             {{ Form::close() }}
             <br/>
