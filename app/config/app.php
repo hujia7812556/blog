@@ -124,6 +124,7 @@ return array(
 
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'MaxHoffmann\Parsedown\ParsedownServiceProvider',
 
 	),
 
@@ -192,6 +193,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 
+        'Markdown'        => 'MaxHoffmann\Parsedown\ParsedownFacade',
 	),
 
 );
