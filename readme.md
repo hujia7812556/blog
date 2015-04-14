@@ -16,3 +16,9 @@
             ...
             'Markdown'        => 'MaxHoffmann\Parsedown\ParsedownFacade',
         ),
+        
+### 设置本地环境
+
+1 打开bootstrap/start.php
+
+2 找到`'local' => array('homestead')`,将homestead改为本地主机名
