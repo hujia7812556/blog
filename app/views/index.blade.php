@@ -24,6 +24,7 @@
                     </div>
                 </article>
             @endforeach
+                {{ $articles->links() }}
         </div>
 
         <div class="am-u-md-4 blog-sidebar">
