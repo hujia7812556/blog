@@ -104,4 +104,11 @@ class TagController extends \BaseController {
         return Redirect::back();
 	}
 
+    //属于某个标签的所有文章
+    public function articles($id)
+    {
+        $tag = Tag::find($id);
+        $articles = $tag->articles()->orderBy('created_at', 'desc')->paginate(10);
+        return View::make('articles.specificTag')->with('tag', $tag)->with('articles', $articles);
+    }
 }

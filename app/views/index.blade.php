@@ -11,7 +11,7 @@
                     <h4 class="am-article-meta blog-meta">
                         by <a href="{{ URL::to('user/' . $article->user->id . '/articles') }}">{{{ $article->user->nickname }}}</a> posted on {{ $article->created_at->format('Y/m/d H:i') }} under
                         @foreach ($article->tags as $tag)
-                            <a href="#" style="color: #fff;" class="am-badge am-badge-success am-radius">{{ $tag->name }}</a>
+                            <a href="{{ URL::to('tag/' . $tag->id . '/articles') }}" style="color: #fff;" class="am-badge am-badge-success am-radius">{{ $tag->name }}</a>
                         @endforeach
                     </h4>
                     <div class="am-g">
