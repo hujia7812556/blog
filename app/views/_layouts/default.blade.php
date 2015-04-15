@@ -22,7 +22,7 @@
 <header class="am-topbar am-topbar-fixed-top">
     <div class="am-container">
         <h1 class="am-topbar-brand">
-            <a href="/">ShiYanLou Blog</a>
+            <a href="{{URL::to('/')}}">ShiYanLou Blog</a>
         </h1>
         @include('_layouts.nav')
     </div>
