@@ -49,6 +49,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+    return Response::view('error.error', array(), 500);
 });
 
 /*
@@ -65,6 +66,11 @@ App::error(function(Exception $exception, $code)
 App::down(function()
 {
 	return Response::make("Be right back!", 503);
+});
+
+App::missing(function($exception)
+{
+    return Response::view('error.notFound', array(), 404);
 });
 
 /*
