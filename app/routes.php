@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    $articles = Article::with('user', 'tags')->orderBy('created_at', 'desc')->paginate(3);
+    $articles = Article::with('user', 'tags')->orderBy('created_at', 'desc')->paginate(Config::get('custom.page_size'));
     $tags = Tag::where('count', '>', '0')->orderBy('count', 'desc')->orderBy('updated_at', 'desc')->take(10)->get();
     return View::make('index')->with('articles', $articles)->with('tags', $tags);
 });
