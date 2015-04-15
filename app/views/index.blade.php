@@ -31,7 +31,7 @@
             <br/>
             <div class="am-panel-group">
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd"><span class="am-icon-tags"></span> Tags</div>
+                    <div class="am-panel-hd"><span class="am-icon-tags"></span> <a href="{{URL::route('tag_list')}}">Tags</a></div>
                     <ul class="am-list">
                         @for ($i = 0, $len = count($tags); $i < $len; $i++)
                             <li>

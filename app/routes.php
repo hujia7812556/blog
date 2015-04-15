@@ -149,3 +149,4 @@ Route::get('user/{user}/articles', 'UserController@articles');
 Route::post('article/{id}/preview', array('before' => 'auth', 'uses' => 'ArticleController@preview'));
 Route::resource('tag', 'TagController');
 Route::get('tag/{id}/articles', 'TagController@articles');
+Route::get('tag/list', array('as'=>'tag_list','uses'=>'TagController@show'));

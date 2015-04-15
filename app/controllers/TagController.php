@@ -50,7 +50,7 @@ class TagController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        return View::make('tags.list')->with('tags', Tag::all());
 	}
 
 	/**

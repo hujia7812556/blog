@@ -13,7 +13,7 @@
                     <blockquote>
                         Tags:
                         @foreach ($article->tags as $tag)
-                            <a class="am-badge am-badge-success am-radius">{{ $tag->name }}</a>
+                            <a class="am-badge am-badge-success am-radius" href="{{ URL::to('tag/' . $tag->id . '/articles') }}">{{ $tag->name }}</a>
                         @endforeach
                     </blockquote>
                     </p>
