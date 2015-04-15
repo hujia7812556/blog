@@ -176,7 +176,7 @@ class ArticleController extends \BaseController
             $article->tags()->detach($tag->id);
         }
         $article->delete();
-        return Redirect::to('home');
+        return Redirect::back();
     }
 
     public function preview() {

@@ -23,7 +23,7 @@
                     <tr>
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{{ $user->nickname }}}</td>
+                        <td><a href="{{ URL::to('user/' . $user->id . '/articles') }}">{{{ $user->nickname }}}</a></td>
                         <td>
                             <a href="{{ URL::to('user/'. $user->id . '/edit') }}" class="am-btn am-btn-xs am-btn-primary">Edit</a>
                             {{ Form::open(array('url' => 'user/' . $user->id . '/reset', 'method' => 'PUT', 'style' => 'display: inline;')) }}

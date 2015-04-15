@@ -117,6 +117,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth|isAdmin'), function ()
     Route::get('users', function () {
         return View::make('admin.users.list')->with('users', User::all())->with('page', 'users');
     });
+    Route::get('articles', 'AdminController@articles');
 });
 
 Route::model('user', 'User');
