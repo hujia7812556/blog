@@ -195,6 +195,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
         'Markdown'        => 'MaxHoffmann\Parsedown\ParsedownFacade',
+        'Notification'    => 'Hujia\Notification\Facades\Notification',
 	),
 
 );

@@ -28,7 +28,10 @@ class NotificationServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+        $this->app['notification'] = $this->app->share(function($app)
+        {
+            return new Notification($this->app['session.store']);
+        });
 	}
 
 	/**
@@ -38,7 +41,7 @@ class NotificationServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+        return array('notification');
 	}
 
 }
