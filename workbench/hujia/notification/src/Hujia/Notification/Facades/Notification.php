@@ -5,7 +5,7 @@
  * Date: 2015/4/16
  * Time: 14:58
  */
-namespace Shiyanlou\Notification\Facades;
+namespace Hujia\Notification\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

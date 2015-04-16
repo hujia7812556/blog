@@ -43,7 +43,7 @@
 
 4.在app/config/app.php中的providers中增加：
 
->'Shiyanlou\Notification\NotificationServiceProvider',
+>'Hujia\Notification\NotificationServiceProvider',
 
 5.启动开发服务器,如果启动成功，就说明扩展包的基础就搭建完成了。
 
