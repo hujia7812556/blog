@@ -17,6 +17,12 @@
             'Markdown'        => 'MaxHoffmann\Parsedown\ParsedownFacade',
         ),
         
+###安装phpunit
+
+在composer.json的require-dev中增加
+
+>"phpunit/phpunit": "3.7.*"
+        
 ### 设置本地环境
 
 1 打开bootstrap/start.php

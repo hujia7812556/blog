@@ -9,7 +9,8 @@
 		"maxhoffmann/parsedown-laravel": "dev-master"
 	},
 	"require-dev": {
-		"way/generators": "~2.0"
+		"way/generators": "~2.0",
+		"phpunit/phpunit": "3.7.*"
 	},
 	"autoload": {
 		"classmap": [
