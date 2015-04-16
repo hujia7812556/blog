@@ -125,6 +125,7 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'MaxHoffmann\Parsedown\ParsedownServiceProvider',
+        'Hujia\Notification\NotificationServiceProvider',
 
 	),
 
