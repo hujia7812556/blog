@@ -2,7 +2,7 @@
 <html>
 <head lang="zh">
     <meta charset="UTF-8"/>
-    <title>ShiYanLou Blog</title>
+    <title>HuJia Blog</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -22,7 +22,7 @@
 <header class="am-topbar am-topbar-fixed-top">
     <div class="am-container">
         <h1 class="am-topbar-brand">
-            <a href="{{URL::to('/')}}">ShiYanLou Blog</a>
+            <a href="{{URL::to('/')}}">HuJia Blog</a>
         </h1>
         @include('_layouts.nav')
     </div>
