@@ -1,5 +1,19 @@
 ## 具体步骤
 
+### way/generators插件
+
+1.在composer.json中增加：
+
+    "require-dev": {
+        "way/generators": "~2.0"
+    },
+
+2.运行composer update安装，完成后在app/config/app.php的providers中增加：
+
+>'Way\Generators\GeneratorsServiceProvider'
+
+3.运行php artisan是不是多了generate选项，它可以快速地帮我们创建想要的组件。
+
 ### 安装Markdown解析插件
 
 1 在composer.json的require中增加
