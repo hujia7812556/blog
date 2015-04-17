@@ -93,4 +93,16 @@ class AdminController extends \BaseController
     {
         return View::make('admin.tags.list')->with('tags', Tag::where('count', '>', '0')->orderBy('count', 'desc')->orderBy('updated_at', 'desc')->get())->with('page', 'tags');
     }
+
+    public function users()
+    {
+        return View::make('admin.users.list')->with('users', User::all())->with('page', 'users');
+    }
+
+//    public function resetUser()
+//    {
+//        $user->password = Hash::make('123456');
+//        $user->save();
+//        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Reset password successfully'));
+//    }
 }
