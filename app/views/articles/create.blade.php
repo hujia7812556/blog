@@ -12,22 +12,22 @@
             @endif
             {{ Form::open(array('url' => 'article', 'class' => 'am-form')) }}
             <div class="am-form-group">
-                <label for="title">Title</label>
+                <label for="title">{{Lang::get('message.articles.title')}}</label>
                 <input id="title" name="title" type="text" value="{{ Input::old('title') }}"/>
             </div>
             <div class="am-form-group">
-                <label for="content">Content</label>
+                <label for="content">{{Lang::get('message.articles.content')}}</label>
                 <textarea id="content" name="content" rows="20">{{ Input::old('content') }}</textarea>
                 <p class="am-form-help">
-                    <button id="preview" type="button" class="am-btn am-btn-xs am-btn-primary"><span class="am-icon-eye"></span> Preview</button>
+                    <button id="preview" type="button" class="am-btn am-btn-xs am-btn-primary"><span class="am-icon-eye"></span> {{Lang::get('message.articles.preview')}}</button>
                 </p>
             </div>
             <div class="am-form-group">
-                <label for="tags">Tags</label>
+                <label for="tags">{{Lang::get('message.articles.tags')}}</label>
                 <input id="tags" name="tags" type="text" value="{{ Input::old('tags') }}"/>
-                <p class="am-form-help">Separate multiple tags with a comma ","</p>
+                <p class="am-form-help">{{Lang::get('message.articles.tags.hint')}}</p>
             </div>
-            <p><button type="submit" class="am-btn am-btn-success"><span class="am-icon-send"></span> Publish</button></p>
+            <p><button type="submit" class="am-btn am-btn-success"><span class="am-icon-send"></span> {{Lang::get('message.articles.publish')}}</button></p>
             {{ Form::close() }}
         </div>
     </div>

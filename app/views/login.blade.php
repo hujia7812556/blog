@@ -15,19 +15,19 @@
                 </div>
             @endif
             {{ Form::open(array('url' => 'login', 'class' => 'am-form')) }}
-            {{ Form::label('email', 'E-mail:') }}
+            {{ Form::label('email', Lang::get('message.login.email')) }}
             {{ Form::email('email', Input::old('email')) }}
             <br/>
-            {{ Form::label('password', 'Password:') }}
+            {{ Form::label('password', Lang::get('message.login.password')) }}
             {{ Form::password('password') }}
             <br/>
             <label for="remember_me">
                 <input id="remember_me" name="remember_me" type="checkbox" value="1">
-                Remember Me
+                {{Lang::get('message.login.rememberme')}}
             </label>
             <br/>
             <div class="am-cf">
-                {{ Form::submit('Login', array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
+                {{ Form::submit(Lang::get('message.login.login'), array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
             </div>
             {{ Form::close() }}
             <br/>

@@ -103,21 +103,21 @@ class AdminController extends \BaseController
     {
         $user->password = Hash::make('123456');
         $user->save();
-        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Reset password successfully'));
+        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => Lang::get('message.admin.users.reset.success')));
     }
 
     public function blockUser($user)
     {
         $user->block = 1;
         $user->save();
-        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Lock user successfully'));
+        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => Lang::get('message.admin.users.block.success')));
     }
 
     public function unblockUser($user)
     {
         $user->block = 0;
         $user->save();
-        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Unlock user successfully'));
+        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => Lang::get('message.admin.users.unblock.success')));
     }
 
 }

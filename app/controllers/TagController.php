@@ -80,7 +80,7 @@ class TagController extends \BaseController {
         $validator = Validator::make(Input::only('name'), $rules);
         if ($validator->passes()) {
             Tag::find($id)->update(Input::only('name'));
-            return Redirect::back()->with('message', array('type' => 'success', 'content' => 'Modify tag successfully'));
+            return Redirect::back()->with('message', array('type' => 'success', 'content' => Lang::get('message.tags.modify.success')));
         } else {
             return Redirect::back()->withInput()->withErrors($validator);
         }

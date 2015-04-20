@@ -42,9 +42,9 @@ class RegisterController extends \BaseController {
             $user = User::create(Input::only('email', 'password', 'nickname'));
             $user->password = Hash::make(Input::get('password'));
             if ($user->save()) {
-                return Redirect::to('login')->with('message', array('type' => 'success', 'content' => 'Register successfully, please login'));
+                return Redirect::to('login')->with('message', array('type' => 'success', 'content' => Lang::get('message.register.successs')));
             } else {
-                return Redirect::to('register')->withInput()->with('message', array('type' => 'danger', 'content' => 'Register failed'));
+                return Redirect::to('register')->withInput()->with('message', array('type' => 'danger', 'content' => Lang::get('message.register.failure')));
             }
         } else {
             return Redirect::to('register')->withInput()->withErrors($validator);

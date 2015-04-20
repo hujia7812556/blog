@@ -12,10 +12,10 @@
             <table class="am-table am-table-hover am-table-striped ">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>E-mail</th>
-                    <th>Nickname</th>
-                    <th>Management</th>
+                    <th>{{Lang::get('message.admin.users.id')}}</th>
+                    <th>{{Lang::get('message.admin.users.email')}}</th>
+                    <th>{{Lang::get('message.admin.users.nickname')}}</th>
+                    <th>{{Lang::get('message.admin.users.management')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,17 +25,17 @@
                         <td>{{ $user->email }}</td>
                         <td><a href="{{ URL::to('user/' . $user->id . '/articles') }}">{{{ $user->nickname }}}</a></td>
                         <td>
-                            <a href="{{ URL::to('user/'. $user->id . '/edit') }}" class="am-btn am-btn-xs am-btn-primary">Edit</a>
+                            <a href="{{ URL::to('user/'. $user->id . '/edit') }}" class="am-btn am-btn-xs am-btn-primary">{{Lang::get('message.admin.users.edit')}}</a>
                             {{ Form::open(array('url' => 'user/' . $user->id . '/reset', 'method' => 'PUT', 'style' => 'display: inline;')) }}
-                            <button type="button" class="am-btn am-btn-xs am-btn-warning" id="reset{{ $user->id }}">Reset</button>
+                            <button type="button" class="am-btn am-btn-xs am-btn-warning" id="reset{{ $user->id }}">{{Lang::get('message.admin.users.reset')}}</button>
                             {{ Form::close() }}
                             @if ($user->block)
                                 {{ Form::open(array('url' => 'user/' . $user->id . '/unblock', 'method' => 'PUT', 'style' => 'display: inline;')) }}
-                                <button type="button" class="am-btn am-btn-xs am-btn-danger" id="unblock{{ $user->id }}">Unblock</button>
+                                <button type="button" class="am-btn am-btn-xs am-btn-danger" id="unblock{{ $user->id }}">{{Lang::get('message.admin.users.unblock')}}</button>
                                 {{ Form::close() }}
                             @else
                                 {{ Form::open(array('url' => 'user/' . $user->id, 'method' => 'DELETE', 'style' => 'display: inline;')) }}
-                                <button type="button" class="am-btn am-btn-xs am-btn-danger" id="delete{{ $user->id }}">Block</button>
+                                <button type="button" class="am-btn am-btn-xs am-btn-danger" id="delete{{ $user->id }}">{{Lang::get('message.admin.users.block')}}</button>
                                 {{ Form::close() }}
                             @endif
                         </td>
@@ -51,15 +51,15 @@
             <div class="am-modal-bd">
             </div>
             <div class="am-modal-footer">
-                <span class="am-modal-btn" data-am-modal-cancel>No</span>
-                <span class="am-modal-btn" data-am-modal-confirm>Yes</span>
+                <span class="am-modal-btn" data-am-modal-cancel>{{Lang::get('message.no')}}</span>
+                <span class="am-modal-btn" data-am-modal-confirm>{{Lang::get('message.yes')}}</span>
             </div>
         </div>
     </div>
     <script>
         $(function() {
             $('[id^=reset]').on('click', function() {
-                $('.am-modal-bd').text('Sure you want to reset the password for 123456?');
+                $('.am-modal-bd').text('{{Lang::get('message.admin.users.reset.sure')}}');
                 $('#my-confirm').modal({
                     relatedTarget: this,
                     onConfirm: function(options) {
@@ -71,7 +71,7 @@
             });
 
             $('[id^=delete]').on('click', function() {
-                $('.am-modal-bd').text('Sure you want to lock it?');
+                $('.am-modal-bd').text('{{Lang::get('message.admin.users.lock.sure')}}');
                 $('#my-confirm').modal({
                     relatedTarget: this,
                     onConfirm: function(options) {
@@ -83,7 +83,7 @@
             });
 
             $('[id^=unblock]').on('click', function() {
-                $('.am-modal-bd').text('Sure you want to unlock it?');
+                $('.am-modal-bd').text('{{Lang::get('message.admin.users.unlock.sure')}}');
                 $('#my-confirm').modal({
                     relatedTarget: this,
                     onConfirm: function(options) {

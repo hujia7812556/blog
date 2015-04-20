@@ -15,23 +15,23 @@
                 </div>
             @endif
             {{ Form::model($user, array('url' => 'user/' . $user->id, 'method' => 'PUT', 'class' => 'am-form')) }}
-            {{ Form::label('email', 'E-mail:') }}
+            {{ Form::label('email', Lang::get('message.user.edit.email')) }}
             <input id="email" name="email" type="email" readonly="readonly" value="{{ $user->email }}"/>
             <br/>
-            {{ Form::label('nickname', 'NickName:') }}
+            {{ Form::label('nickname', Lang::get('message.user.edit.nickname')) }}
             <input id="nickname" name="nickname" type="text" value="{{{ $user->nickname }}}"/>
             <br/>
-            {{ Form::label('old_password', 'OldPassword:') }}
+            {{ Form::label('old_password', Lang::get('message.user.edit.oldpassword')) }}
             {{ Form::password('old_password') }}
             <br/>
-            {{ Form::label('password', 'NewPassword:') }}
+            {{ Form::label('password', Lang::get('message.user.edit.newpassword')) }}
             {{ Form::password('password') }}
             <br/>
-            {{ Form::label('password_confirmation', 'ConfirmPassword:') }}
+            {{ Form::label('password_confirmation', Lang::get('message.user.edit.confirmpassword')) }}
             {{ Form::password('password_confirmation') }}
             <br/>
             <div class="am-cf">
-                {{ Form::submit('Modify', array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
+                {{ Form::submit(Lang::get('message.user.edit.modify'), array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
             </div>
             {{ Form::close() }}
             <br/>

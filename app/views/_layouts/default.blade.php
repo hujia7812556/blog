@@ -22,7 +22,7 @@
 <header class="am-topbar am-topbar-fixed-top">
     <div class="am-container">
         <h1 class="am-topbar-brand">
-            <a href="{{URL::to('/')}}">HuJia Blog</a>
+            <a href="{{URL::to('/')}}">{{Lang::get('message.topbar.name')}}</a>
         </h1>
         @include('_layouts.nav')
     </div>

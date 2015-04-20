@@ -92,7 +92,7 @@ class UserController extends \BaseController {
                 }
                 $user->nickname = Input::get('nickname');
                 $user->save();
-                return Redirect::route('user.edit', $id)->with('user', $user)->with('message', array('type' => 'success', 'content' => 'Modify successfully'));
+                return Redirect::route('user.edit', $id)->with('user', $user)->with('message', array('type' => 'success', 'content' => Lang::get('message.user.edit.modify.success')));
             } else {
                 return Redirect::route('user.edit', $id)->withInput()->with('user', $user)->withErrors($validator);
             }

@@ -9,7 +9,7 @@
                         <a href="{{ URL::route('article.show', $article->id) }}">{{{ $article->title }}}</a>
                     </h3>
                     <h4 class="am-article-meta blog-meta">
-                        by <a href="{{ URL::to('user/' . $article->user->id . '/articles') }}">{{{ $article->user->nickname }}}</a> posted on {{ $article->created_at->format('Y/m/d H:i') }} under
+                        {{Lang::get('message.index.by')}} <a href="{{ URL::to('user/' . $article->user->id . '/articles') }}">{{{ $article->user->nickname }}}</a> {{Lang::get('message.index.postedon')}} {{ $article->created_at->format('Y/m/d H:i') }} {{Lang::get('message.index.under')}}
                         @foreach ($article->tags as $tag)
                             <a href="{{ URL::to('tag/' . $tag->id . '/articles') }}" style="color: #fff;" class="am-badge am-badge-success am-radius">{{ $tag->name }}</a>
                         @endforeach
@@ -31,7 +31,7 @@
             <br/>
             <div class="am-panel-group">
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd"><span class="am-icon-tags"></span> <a href="{{URL::route('tag_list')}}">Tags</a></div>
+                    <div class="am-panel-hd"><span class="am-icon-tags"></span> <a href="{{URL::route('tag_list')}}">{{Lang::get('message.tags')}}</a></div>
                     <ul class="am-list">
                         @for ($i = 0, $len = count($tags); $i < $len; $i++)
                             <li>

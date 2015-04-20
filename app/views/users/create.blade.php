@@ -15,20 +15,20 @@
                 </div>
             @endif
             {{ Form::open(array('url' => 'register', 'class' => 'am-form')) }}
-            {{ Form::label('email', 'E-mail:') }}
+            {{ Form::label('email', Lang::get('message.register.email')) }}
             {{ Form::email('email', Input::old('email')) }}
             <br/>
-            {{ Form::label('nickname', 'NickName:') }}
+            {{ Form::label('nickname', Lang::get('message.register.nickname')) }}
             {{ Form::text('nickname', Input::old('nickname')) }}
             <br/>
-            {{ Form::label('password', 'Password:') }}
+            {{ Form::label('password', Lang::get('message.register.password')) }}
             {{ Form::password('password') }}
             <br/>
-            {{ Form::label('password_confirmation', 'ConfirmPassword:') }}
+            {{ Form::label('password_confirmation', Lang::get('message.register.confirmpassword')) }}
             {{ Form::password('password_confirmation') }}
             <br/>
             <div class="am-cf">
-                {{ Form::submit('Register', array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
+                {{ Form::submit(Lang::get('message.register.register'), array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
             </div>
             {{ Form::close() }}
             <br/>
