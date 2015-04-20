@@ -1,37 +1,37 @@
 <?php
 
-class LoginController extends \BaseController {
-
-	/**
-	 * Display a listing of the resource.
-	 * GET /login
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+class LoginController extends \BaseController
+{
+    /**
+     * Display a listing of the resource.
+     * GET /login
+     *
+     * @return Response
+     */
+    public function index()
+    {
         return View::make('login');
-	}
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /login/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    /**
+     * Show the form for creating a new resource.
+     * GET /login/create
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /login
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+    /**
+     * Store a newly created resource in storage.
+     * POST /login
+     *
+     * @return Response
+     */
+    public function store()
+    {
         $rules = array(
             'email' => 'required|email',
             'password' => 'required|min:6',
@@ -51,56 +51,55 @@ class LoginController extends \BaseController {
         } else {
             return Redirect::to('login')->withInput()->withErrors($validator);
         }
-	}
+    }
 
-	/**
-	 * Display the specified resource.
-	 * GET /login/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    /**
+     * Display the specified resource.
+     * GET /login/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /login/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    /**
+     * Show the form for editing the specified resource.
+     * GET /login/{id}/edit
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /login/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    /**
+     * Update the specified resource in storage.
+     * PUT /login/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        //
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /login/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
+    /**
+     * Remove the specified resource from storage.
+     * DELETE /login/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
     /**
      * 显示用户
@@ -111,5 +110,4 @@ class LoginController extends \BaseController {
     {
         return View::make('home')->with('user', Auth::user())->with('articles', Article::with('tags')->where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get());
     }
-
 }
