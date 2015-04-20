@@ -32,25 +32,10 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth|isAdmin'), function ()
 });
 
 Route::model('user', 'User');
-
 Route::group(array('before' => 'auth|csrf|isAdmin'), function () {
-    Route::put('user/{user}/reset', function (User $user) {
-        $user->password = Hash::make('123456');
-        $user->save();
-        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Reset password successfully'));
-    });
-
-    Route::delete('user/{user}', function (User $user) {
-        $user->block = 1;
-        $user->save();
-        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Lock user successfully'));
-    });
-
-    Route::put('user/{user}/unblock', function (User $user) {
-        $user->block = 0;
-        $user->save();
-        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Unlock user successfully'));
-    });
+    Route::put('user/{user}/reset', 'AdminController@resetUser');
+    Route::delete('user/{user}', 'AdminController@blockUser');
+    Route::put('user/{user}/unblock', 'AdminController@unblockUser');
 });
 
 Route::resource('article', 'ArticleController');

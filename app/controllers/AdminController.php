@@ -99,10 +99,25 @@ class AdminController extends \BaseController
         return View::make('admin.users.list')->with('users', User::all())->with('page', 'users');
     }
 
-//    public function resetUser()
-//    {
-//        $user->password = Hash::make('123456');
-//        $user->save();
-//        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Reset password successfully'));
-//    }
+    public function resetUser($user)
+    {
+        $user->password = Hash::make('123456');
+        $user->save();
+        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Reset password successfully'));
+    }
+
+    public function blockUser($user)
+    {
+        $user->block = 1;
+        $user->save();
+        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Lock user successfully'));
+    }
+
+    public function unblockUser($user)
+    {
+        $user->block = 0;
+        $user->save();
+        return Redirect::to('admin/users')->with('message', array('type' => 'success', 'content' => 'Unlock user successfully'));
+    }
+
 }
