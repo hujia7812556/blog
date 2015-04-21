@@ -79,7 +79,7 @@ class UserController extends \BaseController {
                 'old_password' => 'min:6',
             );
             if (!(Input::get('nickname') == $user->nickname)) {
-                $rules['nickname'] = 'required|min:4||unique:users,nickname';
+                $rules['nickname'] = 'required|unique:users,nickname';
             }
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
