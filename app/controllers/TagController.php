@@ -75,11 +75,13 @@ class TagController extends \BaseController {
 	public function update($id)
 	{
         $rules = array(
-            'name' => array('required', 'regex:/^\w+$/'),
+            'name' => array('required', 'regex:/^\w+$|^\p{Han}+$/u'),
         );
-        $validator = Validator::make(Input::only('name'), $rules);
+        $updateData = Input::only('name');
+        $updateData['name'] = mb_convert_encoding($updateData['name'],'UTF-8');
+        $validator = Validator::make($updateData, $rules);
         if ($validator->passes()) {
-            Tag::find($id)->update(Input::only('name'));
+            Tag::find($id)->update($updateData);
             return Redirect::back()->with('message', array('type' => 'success', 'content' => Lang::get('message.tags.modify.success')));
         } else {
             return Redirect::back()->withInput()->withErrors($validator);
@@ -101,6 +103,7 @@ class TagController extends \BaseController {
         foreach ($tag->articles as $article) {
             $tag->articles()->detach($article->id);
         }
+        $tag->destroy($id);
         return Redirect::back();
 	}
 

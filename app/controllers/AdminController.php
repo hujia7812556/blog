@@ -91,7 +91,7 @@ class AdminController extends \BaseController
 
     public function tags()
     {
-        return View::make('admin.tags.list')->with('tags', Tag::where('count', '>', '0')->orderBy('count', 'desc')->orderBy('updated_at', 'desc')->get())->with('page', 'tags');
+        return View::make('admin.tags.list')->with('tags', Tag::orderBy('count', 'desc')->orderBy('updated_at', 'desc')->get())->with('page', 'tags');
     }
 
     public function users()

@@ -77,6 +77,7 @@ return array(
     'articles.datetime' => '日期',
 
     'tags' => '标签',
+    'tags.alltags' => '所有标签',
     'tags.tagname' => '标签名',
     'tags.articlecount' => '文章数量',
     'tags.createdatetime' => '创建时间',

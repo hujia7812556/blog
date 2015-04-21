@@ -43,15 +43,17 @@ class ArticleController extends \BaseController
         $rules = [
             'title' => 'required|max:100',
             'content' => 'required',
-            'tags' => array('required', 'regex:/^\w+$|^(\w+,)+\w+$/'),
+            'tags'    => array('required', 'regex:/^\w+$|^(\w+,)+\w+$|^\p{Han}+$|^(\p{Han}+,)+\p{Han}$/u'),
         ];
-        $validator = Validator::make(Input::all(), $rules);
+        $newData = Input::all();
+        $newData['tags'] = mb_convert_encoding(Input::get('tags'),'UTF-8');
+        $validator = Validator::make($newData, $rules);
         if ($validator->passes()) {
             $article = Article::create(Input::only('title', 'content'));
             $article->user_id = Auth::id();
             $resolved_content = Markdown::parse(Input::get('content'));
             $article->resolved_content = $resolved_content;
-            $tags = explode(',', Input::get('tags'));
+            $tags = array_unique(explode(',', $newData['tags']));
             if (str_contains($resolved_content, '<p>')) {
                 $start = strpos($resolved_content, '<p>');
                 $length = strpos($resolved_content, '</p>') - $start - 3;
@@ -63,9 +65,11 @@ class ArticleController extends \BaseController
             }
             $article->save();
             foreach ($tags as $tagName) {
-                $tag = Tag::whereName($tagName)->first();
+                $tag = Tag::withTrashed()->whereName($tagName)->first();
                 if (!$tag) {
                     $tag = Tag::create(array('name' => $tagName));
+                } elseif ($tag->deleted_at) {//该tag已被软删除
+                    $tag->restore();
                 }
                 $tag->count++;
                 $article->tags()->save($tag);
@@ -118,15 +122,17 @@ class ArticleController extends \BaseController
         $rules = [
             'title'   => 'required|max:100',
             'content' => 'required',
-            'tags'    => array('required', 'regex:/^\w+$|^(\w+,)+\w+$/'),
+            'tags'    => array('required', 'regex:/^\w+$|^(\w+,)+\w+$|^\p{Han}+$|^(\p{Han}+,)+\p{Han}$/u'),
         ];
-        $validator = Validator::make(Input::all(), $rules);
+        $updateData = Input::all();
+        $updateData['tags'] = mb_convert_encoding(Input::get('tags'),'UTF-8');
+        $validator = Validator::make($updateData, $rules);
         if ($validator->passes()) {
             $article = Article::with('tags')->find($id);
             $article->update(Input::only('title', 'content'));
             $resolved_content = Markdown::parse(Input::get('content'));
             $article->resolved_content = $resolved_content;
-            $tags = array_unique(explode(',', Input::get('tags')));
+            $tags = array_unique(explode(',', $updateData['tags']));
             if (str_contains($resolved_content, '<p>')) {
                 $start = strpos($resolved_content, '<p>');
                 $length = strpos($resolved_content, '</p>') - $start - 3;
@@ -138,7 +144,7 @@ class ArticleController extends \BaseController
             }
             $article->save();
             foreach ($article->tags as $tag) {
-                if (($index = array_search($tag->name, $tags)) !== false) {
+                if (($index = array_search($tag->name, $tags)) !== false) {//原文章已存在该标签
                     unset($tags[$index]);
                 } else {
                     $tag->count--;
@@ -147,9 +153,11 @@ class ArticleController extends \BaseController
                 }
             }
             foreach ($tags as $tagName) {
-                $tag = Tag::whereName($tagName)->first();
+                $tag = Tag::withTrashed()->whereName($tagName)->first();
                 if (!$tag) {
                     $tag = Tag::create(array('name' => $tagName));
+                } elseif ($tag->deleted_at) {//该tag已被软删除
+                    $tag->restore();
                 }
                 $tag->count++;
                 $article->tags()->save($tag);

@@ -77,6 +77,7 @@ return array(
     'articles.datetime' => 'Datetime',
 
     'tags' => 'Tags',
+    'tags.alltags' => 'All Tags',
     'tags.tagname' => 'TagName',
     'tags.articlecount' => 'ArticleCount',
     'tags.createdatetime' => 'CreateDateTime',
