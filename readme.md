@@ -53,7 +53,7 @@
     ]
     
 3.根目录下执行：
->php artisan dump-autoload
+>php artisan workbench hujia/notification --resources
 
 4.在app/config/app.php中的providers中增加：
 
