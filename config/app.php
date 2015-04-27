@@ -148,6 +148,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+        'Collective\Html\HtmlServiceProvider',
 
 	],
 
@@ -198,6 +199,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
         'Markdown'  => 'MaxHoffmann\Parsedown\ParsedownFacade',
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
 
 	],
 

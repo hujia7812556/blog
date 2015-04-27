@@ -1,11 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Article;
+use App\Models\Tag;
 
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -17,7 +19,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return View::make('login');
+        return view('login');
     }
 
     /**
@@ -115,6 +117,6 @@ class LoginController extends Controller
      */
     public function showHome()
     {
-        return View::make('home')->with('user', Auth::user())->with('articles', Article::with('tags')->where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get());
+        return view('home')->with('user', Auth::user())->with('articles', Article::with('tags')->where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get());
     }
 }
