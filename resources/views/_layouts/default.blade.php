@@ -9,7 +9,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="renderer" content="webkit"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="alternate icon" type="image/x-icon" href="{{ URL::asset('/i/favicon.ico') }}"/>
+    <link rel="alternate icon" type="image/x-icon" href="{{ URL::asset('i/favicon.ico') }}"/>
     {{--{{ HTML::style('css/amazeui.min.css') }}--}}
     <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('/css/amazeui.min.css') }}">
     {{--{{ HTML::style('css/custom.css') }}--}}

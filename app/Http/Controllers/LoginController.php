@@ -55,10 +55,10 @@ class LoginController extends Controller
             ) {
                 return Redirect::intended('home');
             } else {
-                return Redirect::to('login')->withInput()->with('message', array('type' => 'danger', 'content' => 'E-mail or password error'));
+                return Redirect::route('login')->withInput()->with('message', array('type' => 'danger', 'content' => 'E-mail or password error'));
             }
         } else {
-            return Redirect::to('login')->withInput()->withErrors($validator);
+            return Redirect::route('login')->withInput()->withErrors($validator);
         }
     }
 

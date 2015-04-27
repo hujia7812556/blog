@@ -13,7 +13,7 @@
                 <ul class="am-dropdown-content">
                     <li><a href="{{ URL::to('article/create') }}"><span class="am-icon-edit"></span> {{Lang::get('message.topbar.publisharticle')}}</a></li>
                     <li><a href="{{ URL::to('user/'. Auth::id() . '/edit') }}"><span class="am-icon-user"></span> {{Lang::get('message.topbar.information')}}</a></li>
-                    <li><a href="{{ URL::to('logout') }}"><span class="am-icon-power-off"></span> {{Lang::get('message.topbar.logout')}}</a></li>
+                    <li><a href="{{ URL::route('logout') }}"><span class="am-icon-power-off"></span> {{Lang::get('message.topbar.logout')}}</a></li>
                 </ul>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <a href="{{ URL::to('register') }}" class="am-btn am-btn-secondary am-topbar-btn am-btn-sm topbar-link-btn"><span class="am-icon-pencil"></span> {{Lang::get('message.topbar.register')}}</a>
         </div>
         <div class="am-topbar-right">
-            <a href="{{ URL::to('login') }}" class="am-btn am-btn-primary am-topbar-btn am-btn-sm topbar-link-btn"><span class="am-icon-user"></span> {{Lang::get('message.topbar.login')}}</a>
+            <a href="{{ URL::route('login') }}" class="am-btn am-btn-primary am-topbar-btn am-btn-sm topbar-link-btn"><span class="am-icon-user"></span> {{Lang::get('message.topbar.login')}}</a>
         </div>
     @endif
 </div>

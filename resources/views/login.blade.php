@@ -14,7 +14,7 @@
                     <p>{{ $errors->first() }}</p>
                 </div>
             @endif
-            {!! Form::open(array('url' => 'login', 'class' => 'am-form')) !!}
+            {!! Form::open(array('url' =>URL::route('login'), 'class' => 'am-form')) !!}
             {!! Form::label('email', Lang::get('message.login.email')) !!}
             {!! Form::email('email', Input::old('email')) !!}
             <br/>

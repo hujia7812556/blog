@@ -15,17 +15,17 @@
 
 //Route::get('home', 'HomeController@index');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+//Route::controllers([
+//	'auth' => 'Auth\AuthController',
+//	'password' => 'Auth\PasswordController',
+//]);
 
 Route::group(array('domain'=>'blog2.hujia.com'), function() {
     Route::get('/','IndexController@index');
-    Route::get('login','LoginController@index');
-    Route::post('login', array('before' => 'csrf', 'uses'=>'LoginController@store'));
-    Route::get('home', array('before' => 'auth', 'uses' => 'LoginController@showHome'));//用户主页
-    Route::get('logout', array('before' => 'auth', function () {
+    Route::get('auth/login',array('as'=>'login','uses'=>'LoginController@index'));
+    Route::post('auth/login', array('as'=>'login', 'uses'=>'LoginController@store'));
+    Route::get('home', array('middleware' => 'auth', 'uses' => 'LoginController@showHome'));//用户主页
+    Route::get('auth/logout', array('as'=>'logout',function () {
         Auth::logout();
         return Redirect::to('/');
     }));
