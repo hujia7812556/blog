@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Article;
+use App\Models\User;
+use App\Models\Tag;
+use Illuminate\Support\Facades\Hash;
+use Lang;
 
 class RegisterController extends Controller {
 
@@ -17,7 +22,7 @@ class RegisterController extends Controller {
 	 */
 	public function index()
 	{
-        return View::make('users.create');
+        return view('users.create');
 	}
 
 	/**
@@ -49,7 +54,7 @@ class RegisterController extends Controller {
             $user = User::create(Input::only('email', 'password', 'nickname'));
             $user->password = Hash::make(Input::get('password'));
             if ($user->save()) {
-                return Redirect::to('login')->with('message', array('type' => 'success', 'content' => Lang::get('message.register.successs')));
+                return Redirect::route('login')->with('message', array('type' => 'success', 'content' => Lang::get('message.register.successs')));
             } else {
                 return Redirect::to('register')->withInput()->with('message', array('type' => 'danger', 'content' => Lang::get('message.register.failure')));
             }
