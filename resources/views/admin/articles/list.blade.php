@@ -24,9 +24,9 @@
                         <td><a href="{{ URL::to('user/' . $article->user->id . '/articles') }}">{{{ $article->user->nickname }}}</a></td>
                         <td>
                             <a href="{{ URL::to('article/'. $article->id . '/edit') }}" class="am-btn am-btn-xs am-btn-primary"><span class="am-icon-pencil"></span> {{Lang::get('message.articles.edit')}}</a>
-                            {{ Form::open(array('url' => 'article/' . $article->id, 'method' => 'DELETE', 'style' => 'display: inline;')) }}
+                            {!! Form::open(array('url' => 'article/' . $article->id, 'method' => 'DELETE', 'style' => 'display: inline;')) !!}
                             <button type="button" class="am-btn am-btn-xs am-btn-danger" id="delete{{ $article->id }}"><span class="am-icon-remove"></span> {{Lang::get('message.articles.delete')}}</button>
-                            {{ Form::close() }}
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach

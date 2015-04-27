@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Tag;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -93,17 +92,17 @@ class AdminController extends Controller
 
     public function articles()
     {
-        return View::make('admin.articles.list')->with('articles', Article::with('user', 'tags')->orderBy('created_at', 'desc')->get())->with('page', 'articles');
+        return view('admin.articles.list')->with('articles', Article::with('user', 'tags')->orderBy('created_at', 'desc')->get())->with('page', 'articles');
     }
 
     public function tags()
     {
-        return View::make('admin.tags.list')->with('tags', Tag::orderBy('count', 'desc')->orderBy('updated_at', 'desc')->get())->with('page', 'tags');
+        return view('admin.tags.list')->with('tags', Tag::orderBy('count', 'desc')->orderBy('updated_at', 'desc')->get())->with('page', 'tags');
     }
 
     public function users()
     {
-        return View::make('admin.users.list')->with('users', User::all())->with('page', 'users');
+        return view('admin.users.list')->with('users', User::all())->with('page', 'users');
     }
 
     public function resetUser($user)

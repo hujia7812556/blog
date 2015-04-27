@@ -26,17 +26,17 @@
                         <td><a href="{{ URL::to('user/' . $user->id . '/articles') }}">{{{ $user->nickname }}}</a></td>
                         <td>
                             <a href="{{ URL::to('user/'. $user->id . '/edit') }}" class="am-btn am-btn-xs am-btn-primary">{{Lang::get('message.admin.users.edit')}}</a>
-                            {{ Form::open(array('url' => 'user/' . $user->id . '/reset', 'method' => 'PUT', 'style' => 'display: inline;')) }}
+                            {!! Form::open(array('url' => 'user/' . $user->id . '/reset', 'method' => 'PUT', 'style' => 'display: inline;')) !!}
                             <button type="button" class="am-btn am-btn-xs am-btn-warning" id="reset{{ $user->id }}">{{Lang::get('message.admin.users.reset')}}</button>
-                            {{ Form::close() }}
+                            {!! Form::close() !!}
                             @if ($user->block)
-                                {{ Form::open(array('url' => 'user/' . $user->id . '/unblock', 'method' => 'PUT', 'style' => 'display: inline;')) }}
+                                {!! Form::open(array('url' => 'user/' . $user->id . '/unblock', 'method' => 'PUT', 'style' => 'display: inline;')) !!}
                                 <button type="button" class="am-btn am-btn-xs am-btn-danger" id="unblock{{ $user->id }}">{{Lang::get('message.admin.users.unblock')}}</button>
-                                {{ Form::close() }}
+                                {!! Form::close() !!}
                             @else
-                                {{ Form::open(array('url' => 'user/' . $user->id, 'method' => 'DELETE', 'style' => 'display: inline;')) }}
+                                {!! Form::open(array('url' => 'user/' . $user->id, 'method' => 'DELETE', 'style' => 'display: inline;')) !!}
                                 <button type="button" class="am-btn am-btn-xs am-btn-danger" id="delete{{ $user->id }}">{{Lang::get('message.admin.users.block')}}</button>
-                                {{ Form::close() }}
+                                {!! Form::close() !!}
                             @endif
                         </td>
                     </tr>
