@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Tag;
+use App\Models\User;
+use Config;
+use App\Pagination\PaginationPresenter;
 
 class IndexController extends Controller
 {
@@ -19,8 +20,10 @@ class IndexController extends Controller
     public function index()
     {
         $articles = Article::with('user', 'tags')->orderBy('created_at', 'desc')->paginate(Config::get('custom.page_size'));
+        $presenter  = new PaginationPresenter($articles);
         $tags = Tag::where('count', '>', '0')->orderBy('count', 'desc')->orderBy('updated_at', 'desc')->take(10)->get();
-        return View::make('index')->with('articles', $articles)->with('tags', $tags);
+//        var_dump($articles->render(PaginationPresenter));
+        return view('index')->with('articles', $articles)->with('tags', $tags)->with('presenter',$presenter);
     }
 
     /**
