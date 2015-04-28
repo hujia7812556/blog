@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
-use Illuminate\Http\Request;
+use App\Models\Tag;
+use Lang;
 
 class TagController extends Controller {
 
@@ -57,7 +59,7 @@ class TagController extends Controller {
 	 */
 	public function show($id)
 	{
-        return View::make('tags.list')->with('tags', Tag::all());
+        return view('tags.list')->with('tags', Tag::all());
 	}
 
 	/**
@@ -69,7 +71,7 @@ class TagController extends Controller {
 	 */
 	public function edit($id)
 	{
-        return View::make('tags.edit')->with('tag', Tag::find($id));
+        return view('tags.edit')->with('tag', Tag::find($id));
 	}
 
 	/**

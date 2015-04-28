@@ -15,15 +15,15 @@
                     <p>{{ $errors->first() }}</p>
                 </div>
             @endif
-            {{ Form::model($tag, array('url' => URL::route('tag.update', $tag->id), 'method' => 'PUT', 'class' => "am-form")) }}
+            {!! Form::model($tag, array('url' => URL::route('tag.update', $tag->id), 'method' => 'PUT', 'class' => "am-form")) !!}
             <div class="am-form-group">
-                {{ Form::label('name', Lang::get('message.tags.tagname')) }}
-                {{ Form::text('name', Input::old('name')) }}
+                {!! Form::label('name', Lang::get('message.tags.tagname')) !!}
+                {!! Form::text('name', Input::old('name')) !!}
             </div>
             <p><button type="submit" class="am-btn am-btn-success">
                     <span class="am-icon-pencil"></span> {{Lang::get('message.tags.modify')}}</button>
             </p>
-            {{ Form::close() }}
+            {!! Form::close() !!}
         </div>
     </div>
 @stop
