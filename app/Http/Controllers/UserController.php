@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 
-use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Tag;
+use App\Models\User;
+use Lang;
 
 class UserController extends Controller {
 
@@ -64,7 +70,7 @@ class UserController extends Controller {
 	public function edit($id)
 	{
         if (Auth::user()->is_admin or Auth::id() == $id) {
-            return View::make('users.edit')->with('user', User::find($id));
+            return view('users.edit')->with('user', User::find($id));
         } else {
             return Redirect::to('/');
         }
@@ -122,7 +128,7 @@ class UserController extends Controller {
 
     public function articles(User $user)
     {
-        return View::make('home')->with('user', $user)->with('articles', Article::with('tags')->where('user_id', '=', $user->id)->orderBy('created_at', 'desc')->get());
+        return view('home')->with('user', $user)->with('articles', Article::with('tags')->where('user_id', '=', $user->id)->orderBy('created_at', 'desc')->get());
     }
 
 }

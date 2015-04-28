@@ -32,6 +32,8 @@ class RouteServiceProvider extends ServiceProvider {
                 return Redirect::to('/');
             }
         });
+
+        $router->model('user', 'App\Models\User');
 	}
 
 	/**

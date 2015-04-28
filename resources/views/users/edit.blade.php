@@ -14,26 +14,26 @@
                     <p>{{ $errors->first() }}</p>
                 </div>
             @endif
-            {{ Form::model($user, array('url' => 'user/' . $user->id, 'method' => 'PUT', 'class' => 'am-form')) }}
-            {{ Form::label('email', Lang::get('message.user.edit.email')) }}
+            {!! Form::model($user, array('url' => 'user/' . $user->id, 'method' => 'PUT', 'class' => 'am-form')) !!}
+            {!! Form::label('email', Lang::get('message.user.edit.email')) !!}
             <input id="email" name="email" type="email" readonly="readonly" value="{{ $user->email }}"/>
             <br/>
-            {{ Form::label('nickname', Lang::get('message.user.edit.nickname')) }}
+            {!! Form::label('nickname', Lang::get('message.user.edit.nickname')) !!}
             <input id="nickname" name="nickname" type="text" value="{{{ $user->nickname }}}"/>
             <br/>
-            {{ Form::label('old_password', Lang::get('message.user.edit.oldpassword')) }}
-            {{ Form::password('old_password') }}
+            {!! Form::label('old_password', Lang::get('message.user.edit.oldpassword')) !!}
+            {!! Form::password('old_password') !!}
             <br/>
-            {{ Form::label('password', Lang::get('message.user.edit.newpassword')) }}
-            {{ Form::password('password') }}
+            {!! Form::label('password', Lang::get('message.user.edit.newpassword')) !!}
+            {!! Form::password('password') !!}
             <br/>
-            {{ Form::label('password_confirmation', Lang::get('message.user.edit.confirmpassword')) }}
-            {{ Form::password('password_confirmation') }}
+            {!! Form::label('password_confirmation', Lang::get('message.user.edit.confirmpassword')) !!}
+            {!! Form::password('password_confirmation') !!}
             <br/>
             <div class="am-cf">
-                {{ Form::submit(Lang::get('message.user.edit.modify'), array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) }}
+                {!! Form::submit(Lang::get('message.user.edit.modify'), array('class' => 'am-btn am-btn-primary am-btn-sm am-fl')) !!}
             </div>
-            {{ Form::close() }}
+            {!! Form::close() !!}
             <br/>
         </div>
     </div>

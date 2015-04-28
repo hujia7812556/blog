@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Tag;
+use App\Models\User;
 
 class ArticleController extends Controller
 {

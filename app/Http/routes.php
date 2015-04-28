@@ -31,9 +31,9 @@ Route::group(array('domain'=>'blog2.hujia.com'), function() {
     }));
 
     Route::get('register', 'RegisterController@index');
-    Route::post('register', array('before' => 'csrf', 'uses' => 'RegisterController@store'));
-    Route::get('user/{id}/edit', array('before' => 'auth', 'as' => 'user.edit', 'uses' => 'UserController@edit'));
-    Route::put('user/{id}', array('before' => 'auth|csrf', 'uses' => 'UserController@update'));
+    Route::post('register', array('uses' => 'RegisterController@store'));
+    Route::get('user/{id}/edit', array('middleware' => 'auth', 'as' => 'user.edit', 'uses' => 'UserController@edit'));
+    Route::put('user/{id}', array('middleware' => 'auth', 'uses' => 'UserController@update'));
 
     Route::group(array('prefix' => 'admin', 'before' => 'auth|isAdmin'), function () {
         Route::get('users', 'AdminController@users');
@@ -41,12 +41,11 @@ Route::group(array('domain'=>'blog2.hujia.com'), function() {
         Route::get('tags', 'AdminController@tags');
     });
 
-    Route::model('user', 'User');
-    Route::group(array('before' => 'auth|csrf|isAdmin'), function () {
-        Route::put('user/{user}/reset', 'AdminController@resetUser');
-        Route::delete('user/{user}', 'AdminController@blockUser');
-        Route::put('user/{user}/unblock', 'AdminController@unblockUser');
-    });
+//    Route::group(array('before' => 'auth|csrf|isAdmin'), function () {
+//        Route::put('user/{user}/reset', 'AdminController@resetUser');
+//        Route::delete('user/{user}', 'AdminController@blockUser');
+//        Route::put('user/{user}/unblock', 'AdminController@unblockUser');
+//    });
 
     Route::resource('article', 'ArticleController');
     Route::post('article/preview', array('before' => 'auth', 'uses' => 'ArticleController@preview'));
