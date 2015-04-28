@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use GrahamCampbell\Markdown\Facades\Markdown;
+
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
@@ -11,9 +18,8 @@ class ArticleController extends Controller
 
     public function __construct()
     {
-        $this->beforeFilter('auth', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));
-        $this->beforeFilter('csrf', array('only' => array('store', 'update', 'destroy')));
-        $this->beforeFilter('@canOperation', array('only' => array('edit', 'update', 'destroy')));
+        $this->middleware('auth', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));
+        $this->middleware('article.canOperation', array('only' => array('edit', 'update', 'destroy')));
     }
 
     /**
@@ -35,7 +41,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return View::make('articles.create');
+        return view('articles.create');
     }
 
     /**
@@ -57,7 +63,7 @@ class ArticleController extends Controller
         if ($validator->passes()) {
             $article = Article::create(Input::only('title', 'content'));
             $article->user_id = Auth::id();
-            $resolved_content = Markdown::parse(Input::get('content'));
+            $resolved_content = Markdown::convertToHtml(Input::get('content'));
             $article->resolved_content = $resolved_content;
             $tags = array_unique(explode(',', $newData['tags']));
             if (str_contains($resolved_content, '<p>')) {
@@ -95,7 +101,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return View::make('articles.show')->with('article', Article::find($id));
+        return view('articles.show')->with('article', Article::find($id));
     }
 
     /**
@@ -113,7 +119,7 @@ class ArticleController extends Controller
             $tags .= $article->tags[$i]->name . ($i == $len - 1 ? '' : ',');
         }
         $article->tags = $tags;
-        return View::make('articles.edit')->with('article', $article);
+        return view('articles.edit')->with('article', $article);
     }
 
     /**
@@ -136,7 +142,7 @@ class ArticleController extends Controller
         if ($validator->passes()) {
             $article = Article::with('tags')->find($id);
             $article->update(Input::only('title', 'content'));
-            $resolved_content = Markdown::parse(Input::get('content'));
+            $resolved_content = Markdown::convertToHtml(Input::get('content'));
             $article->resolved_content = $resolved_content;
             $tags = array_unique(explode(',', $updateData['tags']));
             if (str_contains($resolved_content, '<p>')) {
@@ -194,14 +200,6 @@ class ArticleController extends Controller
     }
 
     public function preview() {
-        return Markdown::parse(Input::get('content'));
-    }
-
-    public function canOperation($route, $request)
-    {
-        if (!(Auth::user()->is_admin or Auth::id() == Article::find(Route::input('article'))->user_id))
-        {
-            return Redirect::to('/');
-        }
+        return Markdown::convertToHtml(Input::get('content'));
     }
 }

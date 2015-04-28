@@ -10,7 +10,7 @@
                     <p>{{ $errors->first() }}</p>
                 </div>
             @endif
-            {{ Form::open(array('url' => 'article', 'class' => 'am-form')) }}
+            {!! Form::open(array('url' => 'article', 'class' => 'am-form')) !!}
             <div class="am-form-group">
                 <label for="title">{{Lang::get('message.articles.title')}}</label>
                 <input id="title" name="title" type="text" value="{{ Input::old('title') }}"/>
@@ -28,7 +28,7 @@
                 <p class="am-form-help">{{Lang::get('message.articles.tags.hint')}}</p>
             </div>
             <p><button type="submit" class="am-btn am-btn-success"><span class="am-icon-send"></span> {{Lang::get('message.articles.publish')}}</button></p>
-            {{ Form::close() }}
+            {!! Form::close() !!}
         </div>
     </div>
 
@@ -47,7 +47,8 @@
         $(function() {
             $('#preview').on('click', function() {
                 $('.am-popup-title').text($('#title').val());
-                $.post('preview', {'content': $('#content').val()}, function(data, status) {
+                $_token = "{{ csrf_token() }}";
+                $.post('preview', {'content': $('#content').val(), _token: $_token}, function(data, status) {
                     $('.am-popup-bd').html(data);
                 });
                 $('#preview-popup').modal();

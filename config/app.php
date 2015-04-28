@@ -137,8 +137,8 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 
         'Laracasts\Generators\GeneratorsServiceProvider',
-        'MaxHoffmann\Parsedown\ParsedownServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'GrahamCampbell\Markdown\MarkdownServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -198,9 +198,9 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
-        'Markdown'  => 'MaxHoffmann\Parsedown\ParsedownFacade',
-        'Form' => 'Collective\Html\FormFacade',
-        'Html' => 'Collective\Html\HtmlFacade',
+        'Form'      => 'Collective\Html\FormFacade',
+        'Html'      => 'Collective\Html\HtmlFacade',
+        'Markdown'  => 'GrahamCampbell\Markdown\Facades\Markdown',
 
 	],
 

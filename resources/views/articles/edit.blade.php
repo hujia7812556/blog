@@ -10,27 +10,27 @@
                     <p>{{ $errors->first() }}</p>
                 </div>
             @endif
-            {{ Form::model($article, array('url' => URL::route('article.update', $article->id), 'method' => 'PUT', 'class' => "am-form")) }}
+            {!! Form::model($article, array('url' => URL::route('article.update', $article->id), 'method' => 'PUT', 'class' => "am-form")) !!}
             <div class="am-form-group">
-                {{ Form::label('title', Lang::get('message.articles.title')) }}
-                {{ Form::text('title', Input::old('title')) }}
+                {!! Form::label('title', Lang::get('message.articles.title')) !!}
+                {!! Form::text('title', Input::old('title')) !!}
             </div>
             <div class="am-form-group">
-                {{ Form::label('content', Lang::get('message.articles.content')) }}
-                {{ Form::textarea('content', Input::old('content'), array('rows' => '20')) }}
+                {!! Form::label('content', Lang::get('message.articles.content')) !!}
+                {!! Form::textarea('content', Input::old('content'), array('rows' => '20')) !!}
                 <p class="am-form-help">
                     <button id="preview" type="button" class="am-btn am-btn-xs am-btn-primary"><span class="am-icon-eye"></span> {{Lang::get('message.articles.preview')}}</button>
                 </p>
             </div>
             <div class="am-form-group">
-                {{ Form::label('tags', Lang::get('message.articles.tags')) }}
-                {{ Form::text('tags', Input::old('tags')) }}
+                {!! Form::label('tags', Lang::get('message.articles.tags')) !!}
+                {!! Form::text('tags', Input::old('tags')) !!}
                 <p class="am-form-help">{{Lang::get('message.articles.tags.hint')}}</p>
             </div>
             <p><button type="submit" class="am-btn am-btn-success">
                     <span class="am-icon-pencil"></span> {{Lang::get('message.articles.modify')}}</button>
             </p>
-            {{ Form::close() }}
+            {!! Form::close() !!}
         </div>
     </div>
 
@@ -49,7 +49,8 @@
         $(function() {
             $('#preview').on('click', function() {
                 $('.am-popup-title').text($('#title').val());
-                $.post('preview', {'content': $('#content').val()}, function(data, status) {
+                $_token = "{{ csrf_token() }}";
+                $.post('preview', {'content': $('#content').val(), _token: $_token}, function(data, status) {
                     $('.am-popup-bd').html(data);
                 });
                 $('#preview-popup').modal();

@@ -19,14 +19,14 @@
                     <div class="am-g">
                         <div class="am-u-sm-12">
                             @if ($article->summary)
-                                <p>{{ $article->summary }}</p>
+                                <p>{!! $article->summary !!}</p>
                             @endif
                             <hr class="am-article-divider"/>
                         </div>
                     </div>
                 </article>
             @endforeach
-            {{ $articles->links() }}
+            {!! $articles->render($presenter) !!}
         </div>
     </div>
 @stop

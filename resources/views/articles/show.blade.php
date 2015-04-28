@@ -17,7 +17,7 @@
                         @endforeach
                     </blockquote>
                     </p>
-                    <p>{{ $article->resolved_content }}</p>
+                    <p>{!! $article->resolved_content !!}</p>
                 </div>
                 <br/>
             </div>

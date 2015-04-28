@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
+use App\Pagination\PaginationPresenter;
 use App\Models\Tag;
 use Lang;
 
@@ -13,8 +14,7 @@ class TagController extends Controller {
 
     public function __construct()
     {
-        $this->beforeFilter('auth', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));
-        $this->beforeFilter('csrf', array('only' => array('store', 'update', 'destroy')));
+        $this->middleware('auth', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));
     }
 
 	/**
@@ -121,6 +121,7 @@ class TagController extends Controller {
     {
         $tag = Tag::find($id);
         $articles = $tag->articles()->orderBy('created_at', 'desc')->paginate(10);
-        return View::make('articles.specificTag')->with('tag', $tag)->with('articles', $articles);
+        $presenter  = new PaginationPresenter($articles);
+        return view('articles.specificTag')->with('tag', $tag)->with('articles', $articles)->with('presenter',$presenter);
     }
 }

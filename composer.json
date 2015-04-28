@@ -6,7 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-        "maxhoffmann/parsedown-laravel": "dev-master",
+        "graham-campbell/markdown": "~3.0",
 		"barryvdh/laravel-ide-helper": "~2.0",
         "laravelcollective/html": "~5.0"
 	},

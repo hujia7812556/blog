@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.0.28 on 2015-04-27.
+ * Generated for Laravel 5.0.28 on 2015-04-28.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1228,7 +1228,7 @@ namespace {
         /**
          * Get the currently authenticated user.
          *
-         * @return \App\User|null 
+         * @return \App\Models\User|null 
          * @static 
          */
         public static function user(){
@@ -1330,7 +1330,7 @@ namespace {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \App\User 
+         * @return \App\Models\User 
          * @static 
          */
         public static function loginUsingId($id, $remember = false){
@@ -1435,7 +1435,7 @@ namespace {
         /**
          * Return the currently cached user of the application.
          *
-         * @return \App\User|null 
+         * @return \App\Models\User|null 
          * @static 
          */
         public static function getUser(){
@@ -1477,7 +1477,7 @@ namespace {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\User 
+         * @return \App\Models\User 
          * @static 
          */
         public static function getLastAttempted(){
@@ -11603,74 +11603,6 @@ namespace {
     }
 
 
-    class Markdown extends \MaxHoffmann\Parsedown\ParsedownFacade{
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function text($text){
-            return \Parsedown::text($text);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function setBreaksEnabled($breaksEnabled){
-            return \Parsedown::setBreaksEnabled($breaksEnabled);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function setMarkupEscaped($markupEscaped){
-            return \Parsedown::setMarkupEscaped($markupEscaped);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function setUrlsLinked($urlsLinked){
-            return \Parsedown::setUrlsLinked($urlsLinked);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function line($text){
-            return \Parsedown::line($text);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function parse($text){
-            return \Parsedown::parse($text);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function instance($name = 'default'){
-            return \Parsedown::instance($name);
-        }
-        
-    }
-
-
     class Form extends \Collective\Html\FormFacade{
         
         /**
@@ -12371,6 +12303,23 @@ namespace {
          */
         public static function hasMacro($name){
             return \Collective\Html\HtmlBuilder::hasMacro($name);
+        }
+        
+    }
+
+
+    class Markdown extends \GrahamCampbell\Markdown\Facades\Markdown{
+        
+        /**
+         * Converts CommonMark to HTML.
+         *
+         * @param string $commonMark
+         * @return string 
+         * @api 
+         * @static 
+         */
+        public static function convertToHtml($commonMark){
+            return \League\CommonMark\CommonMarkConverter::convertToHtml($commonMark);
         }
         
     }
