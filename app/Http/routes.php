@@ -35,17 +35,17 @@ Route::group(array('domain'=>'blog2.hujia.com'), function() {
     Route::get('user/{id}/edit', array('middleware' => 'auth', 'as' => 'user.edit', 'uses' => 'UserController@edit'));
     Route::put('user/{id}', array('middleware' => 'auth', 'uses' => 'UserController@update'));
 
-    Route::group(array('prefix' => 'admin', 'before' => 'auth|isAdmin'), function () {
+    Route::group(array('prefix' => 'admin', 'middleware' => array('auth','isAdmin')), function () {
         Route::get('users', 'AdminController@users');
         Route::get('articles', 'AdminController@articles');
         Route::get('tags', 'AdminController@tags');
     });
 
-//    Route::group(array('before' => 'auth|csrf|isAdmin'), function () {
-//        Route::put('user/{user}/reset', 'AdminController@resetUser');
-//        Route::delete('user/{user}', 'AdminController@blockUser');
-//        Route::put('user/{user}/unblock', 'AdminController@unblockUser');
-//    });
+    Route::group(array('before' => 'auth|csrf|isAdmin'), function () {
+        Route::put('user/{user}/reset', 'AdminController@resetUser');
+        Route::delete('user/{user}', 'AdminController@blockUser');
+        Route::put('user/{user}/unblock', 'AdminController@unblockUser');
+    });
 
     Route::resource('article', 'ArticleController');
     Route::post('article/preview', array('before' => 'auth', 'uses' => 'ArticleController@preview'));

@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
+use Lang;
 
 class AdminController extends Controller
 {

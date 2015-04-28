@@ -3,8 +3,6 @@
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-use Illuminate\Support\Facades\Route;
-
 class RouteServiceProvider extends ServiceProvider {
 
 	/**
@@ -25,14 +23,6 @@ class RouteServiceProvider extends ServiceProvider {
 	public function boot(Router $router)
 	{
 		parent::boot($router);
-
-        Route::filter('idAdmin', function()
-        {
-            if (!Auth::user()->is_admin) {
-                return Redirect::to('/');
-            }
-        });
-
         $router->model('user', 'App\Models\User');
 	}
 
