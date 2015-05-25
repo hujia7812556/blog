@@ -10,7 +10,7 @@
         "laracasts/generators": "~1.1"
     },
 
-2.运行composer update安装，完成后在app/config/app.php的providers中增加：
+2.运行composer update安装，完成后在config/app.php的providers中增加：
 
 >`'Laracasts\Generators\GeneratorsServiceProvider',`
 
