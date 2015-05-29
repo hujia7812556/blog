@@ -20,7 +20,7 @@
 //	'password' => 'Auth\PasswordController',
 //]);
 
-Route::group(array('domain'=>'blog2.hujia.com'), function() {
+Route::group(array('domain'=>'jerehu.hu.com'), function() {
     Route::get('/','IndexController@index');
     Route::get('auth/login',array('as'=>'login','uses'=>'LoginController@index'));
     Route::post('auth/login', array('as'=>'login', 'uses'=>'LoginController@store'));
