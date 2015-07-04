@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration {
             $table->string('nickname');
             $table->boolean('is_admin')->default(0);
             $table->boolean('block')->default(0);
+            $table->tinyInteger('status')->default(0);//0未激活，已激活
+            $table->string('activication')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();
 		});

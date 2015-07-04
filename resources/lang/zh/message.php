@@ -44,7 +44,7 @@ return array(
     'register.password'=>'密码:',
     'register.confirmpassword'=>'确认密码:',
     'register.register'=>'注册',
-    'register.successs'=>'注册成功, 请登录',
+    'register.successs'=>'注册成功, 请登录邮箱激活您的账号！',
     'register.failure'=>'注册失败',
 
     'admin.users.id' => 'ID',
