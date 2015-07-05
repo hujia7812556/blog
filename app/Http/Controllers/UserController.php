@@ -146,12 +146,12 @@ class UserController extends Controller
             return Redirect::to('/');
         }
         $email = Crypt::decrypt(Input::get('email'));
-        $user = User::where('email', $email)->get();
-        $tmp = $user->has('status');
-        if (!$user) {
+        $userInfo = User::where('email', $email)->get()->toArray();
+        if (!$userInfo) {
             return view('users.active.failure')->with('message', '账号不存在，请先注册账号！');
         }
-        $userInfo = $user->toArray();
+
+        $user = User::find($userInfo[0]['id']);
         if (0 != $user->status) {
             return view('users.active.failure')->with('message', '账号已激活，请直接登录！');
         }
@@ -159,7 +159,8 @@ class UserController extends Controller
             return view('users.active.failure')->with('message', '注册码已过期，请重新注册！');
         }
 
-//        DB::table('users')->where('id', $user->id)->update(['status' => 1]);
+        $user->status = 1;
+        $user->save();
         return view('users.active.success')->with('nickname',$user->nickname);
     }
 

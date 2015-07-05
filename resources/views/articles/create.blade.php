@@ -3,7 +3,7 @@
 @section('main')
     <div class="am-g am-g-fixed">
         <div class="am-u-sm-12">
-            <h1>Publish Article</h1>
+            <h1>发表文章</h1>
             <hr/>
             @if ($errors->has())
                 <div class="am-alert am-alert-danger" data-am-alert>
