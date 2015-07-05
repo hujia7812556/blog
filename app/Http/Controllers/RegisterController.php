@@ -65,6 +65,7 @@ class RegisterController extends Controller
             $user = User::create(Input::only('email', 'password', 'nickname'));
             $user->password = Hash::make(Input::get('password'));
             $user->activication = $data['activication'];
+            $user->status = 0;
             if ($user->save()) {
                 return Redirect::route('login')->with('message', array('type' => 'success', 'content' => Lang::get('message.register.successs')));
             } else {
