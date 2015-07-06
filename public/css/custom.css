@@ -10,7 +10,7 @@
     color: #fff !important;
 }
 
-@media only screen and (min-width: 641px) {
+@media only screen and (min-width: 300px) {
     .blog-sidebar {
         font-size: 1.4rem;
     }
