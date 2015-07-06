@@ -53,9 +53,13 @@ class LoginController extends Controller
                 'password' => Input::get('password'),
                 'block' => 0), (boolean)Input::get('remember_me'))
             ) {
+                $user = Auth::user();
+                if (1!=$user->status) {
+                    return Redirect::route('login')->withInput()->with('message',array('type'=>'danger','content'=>'账号未激活，请先激活'));
+                }
                 return Redirect::intended('home');
             } else {
-                return Redirect::route('login')->withInput()->with('message', array('type' => 'danger', 'content' => 'E-mail or password error'));
+                return Redirect::route('login')->withInput()->with('message', array('type' => 'danger', 'content' => 'E-mail 或密码错误'));
             }
         } else {
             return Redirect::route('login')->withInput()->withErrors($validator);
